@@ -71,13 +71,16 @@
 //     </>
 //   );
 // }
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaHandsHelping, FaSearch, FaUser, FaShoppingCart, FaBars } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import photo from "./../../assets/Screenshot 2025-02-13 210809.png";
 import styles from './Navbar.module.css'; 
+import { CartContext } from '../../Context/CartContext';
 
 const Header = () => {
+  
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const userName = localStorage.getItem("userName");
@@ -121,7 +124,7 @@ const Header = () => {
         <div className="flex items-center space-x-4">
         <span className="text-xl text-white hover:text-[#E6D5B8] cursor-pointer"><FaSearch /></span>
 <Link to="/login" className="text-xl text-white hover:text-[#E6D5B8]"><FaUser /></Link>
-<span className="text-xl text-white hover:text-[#E6D5B8] cursor-pointer"><FaShoppingCart /></span>
+<span onClick={() => navigate('/cart')} className="text-xl text-white hover:text-[#E6D5B8] cursor-pointer"><FaShoppingCart /></span>
 
 
           {/* صورة المستخدم و الاسم */}

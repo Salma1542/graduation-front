@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from "./Profile.module.css";
 import ProfileLeftside from './ProfileLeftside';
 import axios from 'axios';
-import { FaCalendarAlt, FaThumbsUp, FaComment, FaShare, FaRedo } from "react-icons/fa";
+import { FaCalendarAlt, FaThumbsUp, FaComment, FaShare, FaRedo, FaEllipsisH, FaBars } from "react-icons/fa"; // استخدام FaBars
+import { Link } from 'react-router-dom'; // استيراد Link من react-router-dom
 import NewPost from '../Home/newpost';
 import PostSettings from '../Home/postSetting';
 
@@ -167,9 +168,19 @@ export default function Profile() {
                   onChange={handleProfilePictureChange}
                 />
               </div>
-              <h2>{userData.fullName}</h2>
+              <h2>{userData.fullName || `${userData.firstName} ${userData.lastName}`}</h2>
               <p>رقم الهاتف: {userData.phone||"غير متوفر"}</p>
             </div>
+          </div>
+
+          {/* إضافة أيقونة التوجيه إلى صفحة المنشورات المفضلة */}
+          <div className="mt-4">
+            <Link to="/savepost">
+              <div className="flex items-center cursor-pointer text-[#5C4033]">
+                <FaBars className="mr-2" /> {/* أيقونة الثلاث شرائط */}
+                <span>المنشورات المفضلة</span>
+              </div>
+            </Link>
           </div>
 
           <div className={styles.stats}>
@@ -189,30 +200,31 @@ export default function Profile() {
             <h3 className="text-xl font-bold mb-4">منشورات المستخدم</h3>
             {userPosts.length ? userPosts.map(post => (
               <div key={post.id} className="mb-8 p-4 bg-white shadow-md rounded-lg">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={profilePicture||"https://via.placeholder.com/50"}
-                      alt=""
-                      className="w-12 h-12 border-2 border-red-900 rounded-full"
-                    />
-                    <div>
-                      <p className="font-bold text-red-800">{userData.fullName}</p>
-                      <div className="flex items-center text-gray-600 text-sm gap-1">
-                        <FaCalendarAlt />
-                        <span>{new Date(post.dateCreated).toLocaleDateString()}</span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex justify-between items-center mb-1">
+                  <div className='setting'> </div>
                   <PostSettings post={post} setUserPosts={setUserPosts} />
                 </div>
+
+                <div className="flex items-center gap-2 mb-4">
+                  <img
+                    src={profilePicture || "https://via.placeholder.com/50"}
+                    alt="User"
+                    className="w-12 h-12 border-2 border-red-900 rounded-full"
+                  />
+                  <div>
+                    <p className="font-bold text-red-800">{userData.fullName || `${userData.firstName} ${userData.lastName}`}</p>
+                  </div>
+                </div>
+
                 {post.imageURL && (
                   <div className="w-full h-96 rounded-md mb-4">
-                    <img src={post.imageURL} alt="Post" className="w-full h-full object-cover rounded-md"/>
+                    <img src={post.imageURL} alt="Post" className="w-full h-full object-cover rounded-md" />
                   </div>
                 )}
+
                 <h4 className="text-lg font-bold mb-2">{post.title || "بدون عنوان"}</h4>
                 <p className="border-b-2 border-black pb-2 mb-2">{post.content || "بدون محتوى"}</p>
+
                 <div className="flex justify-between items-center mt-4 text-red-900">
                   <div className="flex gap-8 items-center">
                     <div className="flex items-center gap-1 cursor-pointer"><FaThumbsUp /><span>إعجاب</span></div>

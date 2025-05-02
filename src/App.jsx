@@ -17,6 +17,8 @@ import Blogdetail from './components/Blogdetails/Blogdetail';
 import Shop from './components/Shop/Shop';
 import Landing  from './components/Landing/Landing'
 import PostDetails from './components/Home/Postdetails';
+import Cart from './components/Cart/Cart';
+import SavePosts from './components/SavePosts/SavePosts';
 function App() {
   // const getStoredToken = () => {
   //   return localStorage.getItem("userToken") || null;
@@ -52,7 +54,10 @@ function App() {
           { path: "profile", element: <Profile /> },
           { path: "LiveStream", element: <LiveStream /> },
           { path: "Blogdetails", element: <Blogdetail /> },
+          { path: "cart", element: <Cart /> },
+          { path: "savepost", element: <SavePosts /> },
           { path: "post/:postId", element: <PostDetails /> },
+          
           { path: "*", element: <Login /> },
         ],
       },
