@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { FaHeart, FaCalendarAlt, FaComment, FaShareAlt, FaSort, FaTimes } from "react-icons/fa";
+import { FaHeart, FaCalendarAlt, FaComment, FaShareAlt, FaSort, FaTimes, FaBookmark } from "react-icons/fa"; 
 import { TokenContext } from "../../Context/TokenContext";
 import { useNavigate } from "react-router-dom";
 import styles from './Home.module.css';
-import Comment from "./comment";
+// import Comment from "./comment";  // تأكد من استيراد المكون بشكل صحيح
 import PostSettings from "./postSetting";
 import Like from "./like";
 import profileimage from '../../assets/OIP (1).jpg';
@@ -16,7 +16,11 @@ export default function Posty() {
     const [openComments, setOpenComments] = useState({});
     const [sortOption, setSortOption] = useState("الأحدث");
     const [selectedPost, setSelectedPost] = useState(null);
+<<<<<<< HEAD
     const navigate = useNavigate();  // استخدم useNavigate لتوجيه المستخدم
+=======
+    const [favorites, setFavorites] = useState([]); // إضافة حالة المفضلات
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
 
     useEffect(() => {
         if (!token) return;
@@ -47,6 +51,12 @@ export default function Posty() {
         fetchPosts();
     }, [token]);
 
+    useEffect(() => {
+        // استرجاع المنشورات المفضلة من localStorage عند تحميل الصفحة
+        const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        setFavorites(savedFavorites);
+    }, []);
+
     const handleSortChange = (e) => {
         setSortOption(e.target.value);
     };
@@ -56,6 +66,22 @@ export default function Posty() {
             ...prev,
             [id]: !prev[id],
         }));
+    };
+
+    const handleSavePost = (post) => {
+        setFavorites((prev) => {
+            let updatedFavorites;
+            // التحقق إذا كان المنشور موجودًا بالفعل في المفضلة
+            if (prev.some((favPost) => favPost.id === post.id)) {
+                updatedFavorites = prev.filter((favPost) => favPost.id !== post.id); // إزالة المنشور
+            } else {
+                updatedFavorites = [...prev, post]; // إضافة المنشور
+            }
+
+            // تخزين المنشورات المفضلة في localStorage
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+            return updatedFavorites;
+        });
     };
 
     const sortedPosts = [...posts].sort((a, b) => {
@@ -123,12 +149,21 @@ export default function Posty() {
                         <p className="whitespace-pre-line">{post.content}</p>
 
                         {post.imageURL?.length > 0 && (
+<<<<<<< HEAD
                             <div className="post-img-container mb-3 rounded overflow-hidden">
                                 <img
                                     src={post.imageURL[0]}
                                     alt="صورة المنشور"
                                     className="w-full max-h-96 object-cover cursor-pointer transition hover:scale-105"
                                     onClick={() => setSelectedPost(post)}
+=======
+                            <div className="post-img-container mb-3 rounded overflow-hidden  h-96">
+                                <img
+                                    src={post.imageURL[0]}
+                                    alt="صورة المنشور"
+                                    className="w-full h-full object-cover cursor-pointer transition hover:scale-105"
+                                    onClick={() => setSelectedPost(post)} // فتح المودال عند النقر
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
                                 />
                             </div>
                         )}
@@ -146,6 +181,14 @@ export default function Posty() {
                         </div>
                         <div className="post-action flex items-center text-gray-600 cursor-pointer transition hover:text-[#A0522D] text-sm">
                             <FaShareAlt className="ml-1 text-gray-500" />
+                        </div>
+                        <div
+                            className="post-action flex items-center text-gray-600 cursor-pointer transition hover:text-[#A0522D] text-sm"
+                            onClick={() => handleSavePost(post)} // إضافة المنشور للمفضلة
+                        >
+                            <FaBookmark 
+                                className={`ml-1 text-gray-500 ${favorites.some((favPost) => favPost.id === post.id) ? 'text-yellow-500' : 'text-gray-500'}`} 
+                            />
                         </div>
                     </div>
 

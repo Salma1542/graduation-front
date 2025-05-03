@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from "./ProductDetails.module.css";
 import productImage from "../../assets/image.png";
+import { CartContext } from '../../Context/CartContext';
 
 export default function ProductDetails() {
+let {addToCart} =useContext(CartContext);
+async function addProductToCart(productId){
+   
+  let response = await addToCart(productId);
+  console.log(response);
+}
+
+
+
+
   return (
     <div className={styles.productDetails}>
       
@@ -20,7 +31,7 @@ export default function ProductDetails() {
 
        
         <div className={styles.quantitySection}>
-  <button className={styles.addToCart}>أضف إلى السلة</button>
+  <button onClick={()=>{addProductToCart(ProductDetails._id)}} className={styles.addToCart}>أضف إلى السلة</button>
   <input 
     type="number" 
     defaultValue={1} 

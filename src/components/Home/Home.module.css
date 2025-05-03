@@ -1,9 +1,13 @@
 .Home {}
 body{
+<<<<<<< HEAD
     /* background-color: #fcfcfb; */
 
     background-color: #f8f4e8 !important;
 
+=======
+    background-color: #fcfcfb ;
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
     /* height: 5000px; */
     /* background-color: #FAF2E7; */
 

@@ -14,12 +14,60 @@ import Shop from './components/Shop/Shop';
 import LiveStream from './components/LiveStream/LiveStream';
 import Blogdetail from './components/Blogdetails/Blogdetail';
 import PostDetails from './components/Home/Postdetails';
+<<<<<<< HEAD
 import HandicraftRecommendation from './components/Recommendation/recommend';
 import HandicraftsHomePage from './components/Home2/home2';
 import Profile from './components/Profile/Profile';
 
 function App() {
   const routes = createBrowserRouter([
+=======
+import Cart from './components/Cart/Cart';
+import SavePosts from './components/SavePosts/SavePosts';
+function App() {
+  // const getStoredToken = () => {
+  //   return localStorage.getItem("userToken") || null;
+  // };
+
+  // const [token, setToken] = useState(getStoredToken);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     localStorage.setItem("userToken", token);
+  //   } else {
+  //     localStorage.removeItem("userToken");
+  //   }
+  // }, [token]);
+
+  let routes = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          { index: true, element: <Landing /> },
+          { path: "login", element: <Login /> },
+          { path: "register", element: <Register /> },
+          { path: "repassword", element: <RePassword /> },
+          { path: "otp", element: <OtpPage /> },
+          { path: "recoverpassword", element: <RecoverPassword /> },
+          { path: "newpassword", element: <NewPassword /> },
+          { path: "home", element: <Home /> },
+          { path: "blog", element: <Blog /> },
+          { path: "product-details", element: <ProductDetails /> },
+          { path: "shop", element: <Shop /> },
+          { path: "profile", element: <Profile /> },
+          { path: "LiveStream", element: <LiveStream /> },
+          { path: "Blogdetails", element: <Blogdetail /> },
+          { path: "cart", element: <Cart /> },
+          { path: "savepost", element: <SavePosts /> },
+          { path: "post/:postId", element: <PostDetails /> },
+          
+          { path: "*", element: <Login /> },
+        ],
+      },
+    ],
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
     {
       path: "/",
       element: <Layout />,

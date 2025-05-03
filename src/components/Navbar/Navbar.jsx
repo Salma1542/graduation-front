@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import {
   FaHandsHelping,
@@ -13,6 +14,91 @@ import styles from './Navbar.module.css';
 import { TokenContext } from "../../Context/TokenContext";
 
 export default function Navbar() {
+=======
+// import React from 'react';
+// import styles from './Navbar.module.css'; 
+// import { Link, useNavigate } from 'react-router-dom';
+// import photo from "./../../assets/Screenshot 2025-02-13 210809.png";
+
+// export default function Navbar() {
+//   const navigate = useNavigate(); 
+
+//   // جلب الاسم الكامل من localStorage
+//   const userName = localStorage.getItem("userName");
+
+
+//   return (
+//     <>
+//       <header className={styles.header}>
+//         <div className={styles.topBar}>
+//           <div className='mr-16'>
+//             <i className="fas fa-globe"></i>
+//             <span className='mr-2'>عربى</span>
+//           </div>
+//           <div className='mr-16'>
+//             <i className="fas fa-truck"></i>
+//             <span className='mr-4'>تتبع شحنتك</span>
+//           </div>
+//         </div>
+
+//         <nav className={styles.nav}>
+//           <h1 className={styles.logo}>تراثنا</h1>
+
+//           <div className={styles.searchContainer}>
+//             <input
+//               type="text"
+//               placeholder="بحث في المنشورات"
+//               className={styles.searchInput}
+//               dir="rtl"
+//             />
+//             <button className={styles.searchButton}>بحث</button>
+//           </div>
+
+//           <div className={styles.profile}>
+//             <img onClick={() => navigate('/profile')} src={photo} alt="الصورة الشخصية" className={styles.profileImage} />
+//             <span className={styles.profileName}>{userName || "الاسم"}</span> {/* عرض الاسم المخزن أو اسم افتراضي */}
+//           </div>
+
+//           <div className={styles.socialIcons}>
+//             <Link to="/LiveStream" className={styles.socialButton}>
+//               <i className="fas fa-tv"></i>
+//             </Link>
+//             <button className={styles.socialButton}>
+//               <i className="fas fa-shopping-cart"></i>
+//             </button>
+//             <button className={styles.socialButton}>
+//               <i className="fas fa-bell"></i>
+//             </button>
+//             <button className={styles.socialButton}>
+//               <i className="fas fa-comment-alt"></i>
+//             </button>
+//             <button className={styles.socialButton}>
+//               <i className="fas fa-th-large"></i>
+//             </button>
+//           </div>
+//         </nav>
+//       </header>
+
+//       <div className={styles.menu}>
+//         <Link to="/" className={styles.menuLink}>الرئيسية</Link>
+//         <Link to="/collections" className={styles.menuLink}>مجموعاتك</Link>
+//         <Link to="/shop" className={styles.menuLink}>تسوق</Link>
+//         <Link to="/blog" className={styles.menuLink}>مدونة</Link>
+//       </div>
+//     </>
+//   );
+// }
+import React, { useContext, useState } from 'react';
+import { FaHandsHelping, FaSearch, FaUser, FaShoppingCart, FaBars } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
+import photo from "./../../assets/Screenshot 2025-02-13 210809.png";
+import styles from './Navbar.module.css'; 
+import { CartContext } from '../../Context/CartContext';
+
+const Header = () => {
+  
+
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -166,6 +252,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
+<<<<<<< HEAD
         {/* أيقونات المستخدم */}
         <div className="flex items-center gap-4">
           <Link to="/login" className="text-xl hover:text-[#E6D5B8]">
@@ -187,6 +274,19 @@ export default function Navbar() {
               className="w-8 h-8 rounded-full ml-2"
             />
             <span>{userName || 'الاسم'}</span>
+=======
+        {/* أيقونات المستخدم والبحث والسلة */}
+        <div className="flex items-center space-x-4">
+        <span className="text-xl text-white hover:text-[#E6D5B8] cursor-pointer"><FaSearch /></span>
+<Link to="/login" className="text-xl text-white hover:text-[#E6D5B8]"><FaUser /></Link>
+<span onClick={() => navigate('/cart')} className="text-xl text-white hover:text-[#E6D5B8] cursor-pointer"><FaShoppingCart /></span>
+
+
+          {/* صورة المستخدم و الاسم */}
+          <div onClick={() => navigate('/profile')} className="flex items-center bg-[#E6D5B8] text-[#5D4037] px-3 py-1 rounded-full cursor-pointer">
+            <img src={photo} alt="الصورة الشخصية" className="w-8 h-8 rounded-full ml-2" />
+            <span>{userName || "الاسم"}</span>
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
           </div>
         </div>
 

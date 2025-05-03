@@ -4,6 +4,12 @@ import axios from 'axios';
 import { FaCalendarAlt, FaThumbsUp, FaComment, FaShare, FaRedo, FaEllipsisH, FaBars } from "react-icons/fa";
 import styles from "./Profile.module.css";
 import ProfileLeftside from './ProfileLeftside';
+<<<<<<< HEAD
+=======
+import axios from 'axios';
+import { FaCalendarAlt, FaThumbsUp, FaComment, FaShare, FaRedo, FaEllipsisH, FaBars } from "react-icons/fa"; // استخدام FaBars
+import { Link } from 'react-router-dom'; // استيراد Link من react-router-dom
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
 import NewPost from '../Home/newpost';
 import PostSettings from '../Home/postSetting';
 
@@ -215,8 +221,13 @@ export default function Profile() {
                   onChange={handleProfilePictureChange}
                 />
               </div>
+<<<<<<< HEAD
               <h2 className="text-white">{userData.fullName || `${userData.firstName} ${userData.lastName}`}</h2>
               <p className="text-white">رقم الهاتف: {userData.phone || "غير متوفر"}</p>
+=======
+              <h2>{userData.fullName || `${userData.firstName} ${userData.lastName}`}</h2>
+              <p>رقم الهاتف: {userData.phone||"غير متوفر"}</p>
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
             </div>
           </div>
           <form onSubmit={handleAddSkills}>
@@ -230,7 +241,20 @@ export default function Profile() {
             <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">إضافة مهارة</button>
           </form>
 
+<<<<<<< HEAD
           {/* Stats Section */}
+=======
+          {/* إضافة أيقونة التوجيه إلى صفحة المنشورات المفضلة */}
+          <div className="mt-4">
+            <Link to="/savepost">
+              <div className="flex items-center cursor-pointer text-[#5C4033]">
+                <FaBars className="mr-2" /> {/* أيقونة الثلاث شرائط */}
+                <span>المنشورات المفضلة</span>
+              </div>
+            </Link>
+          </div>
+
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
           <div className={styles.stats}>
             <div>
               <strong>المهارات:</strong>
@@ -260,31 +284,47 @@ export default function Profile() {
               <div key={post.id} className="mb-8 p-4 bg-white shadow-md rounded-lg">
                 <div className="flex justify-between items-center mb-1">
                   <div className='setting'> </div>
+<<<<<<< HEAD
                   {id === currentUserId && (
                     <PostSettings post={post} setUserPosts={setUserPosts} />
                   )}
+=======
+                  <PostSettings post={post} setUserPosts={setUserPosts} />
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
                 </div>
 
                 <div className="flex items-center gap-2 mb-4">
                   <img
+<<<<<<< HEAD
                     src={profilePicture || userData.profilePicture || "https://via.placeholder.com/50"}
+=======
+                    src={profilePicture || "https://via.placeholder.com/50"}
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
                     alt="User"
                     className="w-12 h-12 border-2 border-red-900 rounded-full"
                   />
                   <div>
+<<<<<<< HEAD
                     <p className="font-bold text-red-800">
                       {userData.fullName || `${userData.firstName} ${userData.lastName}`}
                     </p>
+=======
+                    <p className="font-bold text-red-800">{userData.fullName || `${userData.firstName} ${userData.lastName}`}</p>
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
                   </div>
                 </div>
 
                 {post.imageURL && (
                   <div className="w-full h-96 rounded-md mb-4">
+<<<<<<< HEAD
                     <img
                       src={post.imageURL}
                       alt="Post"
                       className="w-full h-full object-cover rounded-md"
                     />
+=======
+                    <img src={post.imageURL} alt="Post" className="w-full h-full object-cover rounded-md" />
+>>>>>>> f8bc284865e6c6a9ce381cac0bb2ab3d1109a60d
                   </div>
                 )}
 
